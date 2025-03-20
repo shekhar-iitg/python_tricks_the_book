@@ -19,4 +19,20 @@ class AlwaysBlueCar(Car):
         super().__init__(*args, **kwargs)
         self.color = 'blue'
 
-AlwaysBlueCar('green', 48392).color
+print(AlwaysBlueCar('green', 48392).color)
+
+import functools
+
+def trace(f):
+    @functools.wraps(f)
+    def decorated_functions(*args, **kwargs):
+        print(f, args, kwargs)
+        result = f(*args, **kwargs)
+        print(result)
+    return decorated_functions
+
+@trace
+def greet(greeting, name):
+    return f'{greeting}, {name}'
+
+greet('Hello', 'Bob')
